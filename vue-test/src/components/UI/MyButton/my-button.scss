@@ -1,0 +1,17 @@
+@import "../vue-test/src/styles/variables";
+
+.my-button {
+  background-image: $right-main-gradient;
+  color: white;
+  padding: $p-buttons;
+  border: none;
+  border-radius: $br-buttons;
+  cursor: pointer;
+  transition: transform 0.2s, background-image 0.4s;
+}
+
+.my-button:hover {
+  transform: scale(1.1);
+  background-image: $left-main-gradient;
+  transition: transform 0.2s, background-image 0.4s;
+}

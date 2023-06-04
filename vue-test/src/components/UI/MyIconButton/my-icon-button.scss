@@ -1,0 +1,13 @@
+.icon-button {
+  display: flex;
+  align-items: center;
+}
+
+.icon-button i.material-icons {
+  gap: 8px;
+}
+
+.icon-button-delete:hover {
+  background: transparent;
+  color: red;
+}

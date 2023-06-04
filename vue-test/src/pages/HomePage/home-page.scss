@@ -1,0 +1,13 @@
+@import "../vue-test/src/styles/variables";
+@import "../vue-test/src/styles/mixins";
+
+table {
+  margin: auto;
+}
+th {
+  cursor: pointer;
+}
+
+.container {
+  @include responsive-container;
+}
