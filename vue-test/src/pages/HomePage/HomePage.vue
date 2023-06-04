@@ -1,38 +1,21 @@
 <template>
   <div class="container">
-    <my-button @click="showModal = true">Добавить пользователя</my-button>
+
+    <div class="header">
+      <h1>Записная книжка</h1>
+      <my-button @click="showModal = true">Добавить пользователя</my-button>
+    </div>
+
     <my-modal v-if="showModal" @close="showModal = false">
       <h3 slot="header">Добавить пользователя</h3>
       <div slot="body">
-        <form @submit.prevent="addUser">
-          <label>Имя: <input v-model="newUser.name" /></label><br />
-          <label>Родитель:
-            <select v-model="newUser.parent">
-              <option value="">Нет</option>
-              <option v-for="user in users" :value="user.id">{{ user.name }}</option>
-            </select>
-          </label><br />
-          <button type="submit">Сохранить</button>
-        </form>
+        <add-user-form :users="users" @add-user="addUser"></add-user-form>
       </div>
+      <button slot="footer" @click="addUser">Сохранить</button>
     </my-modal>
-    <table>
-      <thead>
-      <tr>
-        <th @click="sort('name')">Имя</th>
-        <th @click="sort('id')">ID</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr v-for="(user, index) in sortedUsers" :key="index" :style="{ 'padding-left': user.level * 10 + 'px' }">
-        <td>{{ user.name }}</td>
-        <td>{{ user.id }}</td>
-        <td>
-          <my-icon-button  type="delete" icon-name="delete" @click="handleDelete(user.id)"></my-icon-button>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+
+    <my-table :users="sortedUsers" @sort="sort" @delete="handleDelete"></my-table>
+
   </div>
 </template>
 
@@ -40,11 +23,13 @@
 import MyModal from "../../components/UI/MyModal/MyModal.vue";
 import MyIconButton from "../../components/UI/MyIconButton/MyIconButton.vue";
 import MyButton from "../../components/UI/MyButton/MyButton.vue";
+import AddUserForm from "../../components/AddUserForm/AddUserForm.vue";
+import MyTable from "../../components/UI/MyTable/MyTable.vue";
 export default {
   name: 'HomePage',
   components: {
     MyButton,
-    MyModal, MyIconButton
+    MyModal, MyIconButton, AddUserForm, MyTable
   },
   data() {
     return {
@@ -80,7 +65,7 @@ export default {
             user.level = level
             result.push(user)
             level++
-            addChildren(user.id)
+            addChildren(user.phone)
             level--
           }
         })
@@ -92,15 +77,15 @@ export default {
   methods: {
     addUser() {
       let newUser = Object.assign({}, this.newUser)
-      newUser.id = Date.now().toString()
+      newUser.phone = Date.now().toString()
       this.users.push(newUser)
       localStorage.setItem('users', JSON.stringify(this.users))
       this.newUser.name = ''
       this.newUser.parent = ''
       this.showModal = false
     },
-    handleDelete(id) {
-      this.users = this.users.filter(user => user.id !== id);
+    handleDelete(phone) {
+      this.users = this.users.filter(user => user.phone !== phone);
       localStorage.setItem('users', JSON.stringify(this.users));
     },
     sort(key) {
@@ -118,5 +103,6 @@ export default {
 <style lang="scss" scoped>
 @import "home-page";
 </style>
+
 
 
