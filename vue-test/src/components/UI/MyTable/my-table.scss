@@ -2,13 +2,17 @@
 @import "../vue-test/src/styles/mixins";
 
 table {
+  color: white;
   border-collapse: collapse;
   width: 100%;
+  background-color:$background-item-color;
+  border-radius: 10px 10px 0 0;
   th {
-    background-color: #2c2c2c;
+    background-color: $background-active-color;
     color: white;
     padding: 10px;
     text-align: left;
+    width: 50%;
     &:first-child {
       border-top-left-radius: 10px;
     }
@@ -18,7 +22,7 @@ table {
   }
   td {
     padding: 10px;
-    border-bottom: 1px solid #7c7c7c;
+    border-bottom: 0.5px solid #444444;
   }
   tr:hover {
     background-color: #2c2c2c;

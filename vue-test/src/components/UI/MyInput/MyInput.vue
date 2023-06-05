@@ -1,6 +1,6 @@
 <template>
   <div class="input-container">
-    <input type="text" :placeholder="placeholder" v-model="value" @focus="handleFocus" @blur="handleBlur" />
+    <input type="text" :placeholder="placeholder" @input="onInput" v-model="value" @focus="handleFocus" @blur="handleBlur" />
     <div class="input-border"></div>
   </div>
 </template>
@@ -26,6 +26,9 @@ export default {
     },
     handleBlur() {
       this.isFocused = false
+    },
+    onInput(event) {
+      this.$emit('input', event.target.value);
     }
   }
 }

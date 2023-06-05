@@ -1,0 +1,8 @@
+@import "../vue-test/src/styles/variables";
+@import "../vue-test/src/styles/mixins";
+
+.add-user-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

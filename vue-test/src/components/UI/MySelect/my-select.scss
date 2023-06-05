@@ -1,38 +1,62 @@
 @import "../vue-test/src/styles/variables";
 @import "../vue-test/src/styles/mixins";
 
-.input-container {
+.select-container {
   position: relative;
   width: auto;
 }
 
-.input-container input {
+.selected-option {
   border-radius: 5px;
   color: white;
   width: -webkit-fill-available;
   padding: 15px;
   border: none;
   outline: none;
-  background: $background-color;
-  font-size: 16px;
-  transition: all 0.4s;
-  &:focus {
-    background: $background-active-color;
-    transition: all 0.4s;
-  }
 }
 
-.input-border {
+.selected-option:before {
+  content: "";
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
+  bottom: -2px;
+  left: -2px;
+  right: -2px;
+  height: 2px;
+}
+
+.selected-option:before {
+  background-image: $left-main-gradient;
+}
+
+.options-list {
+  position:absolute;
+  top: calc(100% +5px);
+  left:-2px;
+  right:-2px;
+  list-style-type:none;
+  margin:0;
+  padding:0;
+}
+
+.option{
+  background: $background-item-color;
+  padding:10px;
+}
+
+.option:hover{
+  background-color:$background-active-color;
+}
+
+.select-border {
+  position: absolute;
+  bottom: -2px;
+  left: -2px;
+  right: -2px;
   height: 2px;
   background-image: $left-main-gradient;
 }
 
-.input-container input:focus + .input-border,
-.input-container input:not(:placeholder-shown) + .input-border {
+.select-container:focus-within .select-border {
   animation: expand .5s ease-in-out forwards;
 }
 
@@ -49,3 +73,4 @@
     background-image: $right-main-gradient;
   }
 }
+

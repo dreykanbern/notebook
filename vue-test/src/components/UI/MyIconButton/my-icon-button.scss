@@ -1,13 +1,21 @@
+@import "../vue-test/src/styles/variables";
+@import "../vue-test/src/styles/mixins";
+
 .icon-button {
   display: flex;
   align-items: center;
+  padding: $p-buttons;
+  border-radius: $br-buttons;
+  background: $background-item-color;
+  transition: all 0.3s;
 }
 
 .icon-button i.material-icons {
-  gap: 8px;
+  gap: 10px;
 }
 
 .icon-button-delete:hover {
-  background: transparent;
+  background: $background-active-color;
   color: red;
+  transition: all 0.3s;
 }

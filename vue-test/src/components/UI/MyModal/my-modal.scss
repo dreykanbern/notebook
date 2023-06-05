@@ -22,8 +22,8 @@
   width: 300px;
   margin: 0px auto;
   padding: 20px 30px;
-  background-color: #fff;
-  border-radius: 2px;
+  background-color: $background-color;
+  border-radius: 5px;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.33);
 }
 
@@ -47,4 +47,18 @@
 .modal-enter-active,
 .modal-leave-active {
   transition:opacity .5s
+}
+
+.modal-default-button {
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: $p-buttons;
+  border-radius: $br-buttons;
+  background: $background-item-color;
+  transition: all 0.3s;
+  &:hover {
+    background: $background-active-color;
+    transition: all 0.3s;
+  }
 }
