@@ -2,7 +2,10 @@
   <table>
     <thead>
     <tr>
-      <th @click="$emit('sort', 'name')">Имя</th>
+      <th @click="$emit('sort', 'name')" class="sortable">
+        Имя
+        <i class="material-icons">swap_vert</i>
+      </th>
       <th>Телефон</th>
     </tr>
     </thead>
